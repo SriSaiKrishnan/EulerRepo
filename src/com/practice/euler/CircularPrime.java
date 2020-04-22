@@ -36,7 +36,6 @@ public class CircularPrime {
 		int rotate = digitLength;
 		int remainder = 0;
 		int digit = 1 ;
-		int counter = 0;
 		boolean checkCircularPrime = false;
 		if(checkPrime(number)){
 			while(rotate>0) {
