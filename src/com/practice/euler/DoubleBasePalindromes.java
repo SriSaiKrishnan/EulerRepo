@@ -11,33 +11,32 @@ import java.math.BigInteger;
  */
 public class DoubleBasePalindromes {
 
-	public static int checkDoubleBasePalindromes(int decimal) {
-		int counter = 0;
-		int remainder = 0;
-		String value = null;
-		BigInteger binary = new BigInteger("0");
-		for(int i=2;i<=decimal;i++) {
-			while(decimal>1) {
-				remainder = decimal%2;
-				value = binary.toString() + new BigInteger(""+remainder).toString();
-				binary = new BigInteger(""+value);
-				decimal = decimal/2;
-			}
-			if(checkPalindrome(binary)) {
-				counter++;
-			}
+	public static long checkDoubleBasePalindromes(int decimal) {
+		long begin = System.currentTimeMillis();
+		
+		long Sum = 0; 
+		for (int i = 0; i < 1000000; i++)
+		{
+			if ( checkPalindrome(Integer.toString(i)) && checkPalindrome(Integer.toBinaryString(i)) )
+				Sum += i;
 		}
-		return counter;
+		System.out.println(Sum);
+		
+		long end = System.currentTimeMillis();
+		System.out.println(end-begin + "ms");
+		return Sum;
 	}
+
 	
-	public static boolean checkPalindrome(BigInteger number) {
-		boolean flag = false;
-		BigInteger oldValue = new BigInteger(""+number);
-		StringBuffer revNumber = new StringBuffer(number.toString());
-		revNumber = revNumber.reverse();
-		BigInteger num = new BigInteger(""+revNumber);
-		if(oldValue.equals(num)) {
-			 flag = true;
+	public static boolean checkPalindrome(String number) {
+		boolean flag = true;
+		String str = number;
+		int start=0;
+		int end = str.length()-1;
+		while(start<end) {
+			if(str.charAt(start++)!=str.charAt(end--)) {
+				 flag = false;
+			}
 		}
 		return flag;
 	}
@@ -47,7 +46,7 @@ public class DoubleBasePalindromes {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println(checkDoubleBasePalindromes(1000000));
+		checkDoubleBasePalindromes(1000000);
 	}
 
 }
