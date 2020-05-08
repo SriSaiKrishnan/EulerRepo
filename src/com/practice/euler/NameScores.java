@@ -4,6 +4,7 @@
 package com.practice.euler;
 
 import java.io.FileInputStream;
+import java.util.Arrays;
 
 /**
  * @author sv
@@ -27,7 +28,7 @@ public class NameScores {
 	
 	private static void nameScore(String filepath) {
 		int counter = 1;
-		int nameScore = 0;
+		long nameScore = 0;
 		try {
 			FileInputStream fileInputStream = new FileInputStream(filepath);
 			int i = 0;
@@ -38,11 +39,13 @@ public class NameScores {
 			e.printStackTrace();
 		}
 		String name[] = names.split(",");
+		Arrays.sort(name);
 		for(String Name : name) {
 			nameScore =  nameScore + (counter * calculateScore(Name));
 			counter ++;
 		}
 		System.out.println(nameScore);
+		System.out.println(counter);
 	}
 	
 	private static int calculateScore(String name) {
