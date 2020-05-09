@@ -66,11 +66,10 @@ public class CodedTriangleNumber {
 		return n;
 	}
 
-	private static int[] triangleNumbers() {
+	private static void triangleNumbers() {
 		for (int i = 1; i <= 500; i++) {
 			a[i] = 1 / 2 * i * (i + 1);
 		}
-		return a;
 	}
 
 	private static boolean checkNumberisTriangle(int num) {
