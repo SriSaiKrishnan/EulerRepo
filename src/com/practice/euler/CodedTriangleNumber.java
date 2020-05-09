@@ -5,6 +5,7 @@ package com.practice.euler;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * @author sv
@@ -30,7 +31,7 @@ import java.io.IOException;
 
 public class CodedTriangleNumber {
 
-	private static int a[] = new int[500];
+	private static int a[] = new int[30];
 
 	private static int findCodedTriangle(String filepath) throws IOException {
 		FileInputStream fileInputStream = new FileInputStream(filepath);
@@ -39,9 +40,10 @@ public class CodedTriangleNumber {
 		int counter = 0;
 		String words = "";
 		while ((i = fileInputStream.read()) != -1) {
-			words = words.concat((words).valueOf((char) i));
+			words = words.concat((words).valueOf((char)i));
 		}
 		String word[] = words.split(",");
+		Arrays.sort(word);
 		for (int j = 0; j < word.length; j++) {
 			wordScore = calculateWordScore(word[j]);
 			if(checkNumberisTriangle(wordScore)) {
@@ -67,14 +69,14 @@ public class CodedTriangleNumber {
 	}
 
 	private static void triangleNumbers() {
-		for (int i = 1; i <= 500; i++) {
-			a[i] = 1 / 2 * i * (i + 1);
+		for (int i=1; i<a.length; i++) {
+			a[i-1] = (i * (i + 1))/2;
 		}
 	}
 
 	private static boolean checkNumberisTriangle(int num) {
 		boolean flag = false;
-		for(int i=1; i<a.length;i++) {
+		for(int i=0; i<a.length;i++) {
 			if(a[i]==num) {
 				flag = true;
 			}
@@ -88,6 +90,7 @@ public class CodedTriangleNumber {
 	 */
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
+		triangleNumbers();
 		System.out.println(findCodedTriangle("/Users/sv/eclipse-workspace/EulerRepo/resource/Words.txt"));
 	}
 
