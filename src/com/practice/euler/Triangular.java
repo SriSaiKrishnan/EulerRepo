@@ -13,37 +13,22 @@ Find the next triangle number that is also pentagonal and hexagonal.
  */
 
 public class Triangular {
-	
-	private static long triangular[];
-	private static long pentagonal[];
-	private static long hexagonal[];
-	
-	public static void main(String[] args) {
-		checkTrinagular(300);
+
+	static Boolean isPentagonal(long N) {
+		 double penTest = (Math.sqrt(1 + 24 * N) + 1.0) / 6.0;
+		    return penTest == ((int)penTest);
 	}
 
-	private static void checkTrinagular(int i) {
-		triangular =  new long[i];
-		pentagonal = new long[i];
-		hexagonal = new long[i];
-		// TODO Auto-generated method stub
-		for(int j=1; j<=i; j++) {
-			triangular[j-1] = (long) j * (j +1)/2;
-			pentagonal[j-1] = (long) j * ( j * 3 -1)/2;
-			hexagonal[j-1] = (long) j * (j * 2 -1);
-		}
-	
-	for(int k = 1; k<i; k++) {
-		for(int l=1; l<i; l++) {
-			if(triangular[k]==pentagonal[l]) {
-				for(int m=1; m<i; m++) {
-				if(triangular[k]==hexagonal[m]) {
-					System.out.println("Common Triangular, Pentagonal & Hexagonal Number is: " + triangular[k]);
-				}
-				}
+	public static void main(String[] args) {
+		long result = 0;
+		int i = 143;
+		while (true) {
+			i++;
+			result = i * (2 * i - 1);
+			if (isPentagonal(result)) {
+				break;
 			}
 		}
+		System.out.println(result);
 	}
-	}
-
 }
